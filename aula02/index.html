@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+    <input type="text" id="txtNome">
+    <button onclick="adicionar()">Adicionar</button>
+
+    <div id="divJogadores"></div>
+
+
+    <img src="https://i0.wp.com/www.otakupt.com/wp-content/uploads/2018/10/A-morte-dos-pais-Angels-of-Death-1.jpg?fit=640%2C360&ssl=1">
+    <script>
+        function adicionar(){
+            nome = document.getElementById("txtNome").value;
+
+            if(nome != ""){
+                divJogadores = document.getElementById("divJogadores");
+                conteudo = divJogadores.innerHTML;
+                conteudo += nome + "<br>";
+                divJogadores.innerHTML = conteudo;
+            }else{
+                alert("O campo nome deve ser preenchido");
+            }
+
+        }
+    </script>
+
+<hr>
+
+<h1>Aula 02</h1>
+
+<form action="meuForm" action="salvar.php" method="post" onsubmit="return validar()">
+    <input type="text" name="txtValor" id="txtValor">
+
+    <input type="submit" value="enviar">
+</form>
+<p id="info"></p>
+
+<script src="script.js"></script>
+
+</body>
+</html>
