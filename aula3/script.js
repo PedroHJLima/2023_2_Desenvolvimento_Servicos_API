@@ -11,7 +11,10 @@ $(document).ready(
 
 $(function(){
     $("#btnAlterar").click(function(){
-        $("#minhaDiv").hide();
-    
+        $("#minhaDiv").toggle();
+      //  $("#minhaDiv").hide(3000,function(){
+        //    $("#minhaDiv").show(1000);
+        //});
+        
     })
 });
