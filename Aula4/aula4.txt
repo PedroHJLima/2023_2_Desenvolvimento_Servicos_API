@@ -1,0 +1,8 @@
+AJAX - Asynchronous JavaScript And Xml;
+
+Não é linguagem de programação;
+
+Permite que páginas web possam ser atualizadas de forma assincrona atraves da troca de dados com um servidor web nos bastidores
+
+isso significa que é possível atualizar partes de uma pagina web sem recarregar a pagina inteira;
+
