@@ -40,4 +40,21 @@
         }
     }
 
+    if(isset($_REQUEST["deletar"])){
+        try {
+            $conn = mysqli_connect("localhost", "root", "", "loja_2023_2");
+            if( $conn ){
+                $id = $_POST["id"];
+                $sql = "DELETE FROM produtos WHERE id=$id;";
+                $result = mysqli_query($conn, $sql); 
+    
+                mysqli_close($conn);
+            }else{
+                echo '{ "resposta" : "Erro após conectar com o banco de dados" }';
+            }
+        }catch (\Throwable $th) {
+            echo '{ "resposta" : "Erro ao conectar com o banco de dados" }';
+        }
+    }
+
 ?>
