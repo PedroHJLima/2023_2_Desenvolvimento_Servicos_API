@@ -26,19 +26,23 @@
             if( $conn ){
                 $nomeProd = $_POST["nome"];
                 $precoProd = $_POST["preco"];
+                if (is_numeric($precoProd)){
                 $sql = "INSERT INTO produtos(nome,preco) VALUES ('$nomeProd', $precoProd);";
                 $result = mysqli_query($conn, $sql); 
                 $id = mysqli_insert_id($conn);
     
                 mysqli_close($conn);
                 echo '{"id": '.$id.'}';
+                }else{
+                    echo '{"Alerta" : "Apenas numeros no segundo espaço"}';
+                };
             }else{
                 echo '{ "resposta" : "Erro ao conectar com o banco de dados" }';
-            }
+            };
         }catch (\Throwable $th) {
             echo '{ "resposta" : "Erro ao conectar com o banco de dados" }';
-        }
-    }
+        };
+    };
 
     if(isset($_REQUEST["deletar"])){
         try {
