@@ -50,7 +50,7 @@ servidor.get('/produtos/:idProd',(req,res,next) =>{
         })
 })
 
-servidor.post('/produtos/add',(req,res,next)=>{
+servidor.post('/produtos',(req,res,next)=>{
     knex('produtos')
         .insert(req.body)
         .then((dados)=>{
