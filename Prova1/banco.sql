@@ -1,6 +1,6 @@
 CREATE DATABASE ecomerce;
 
-USE ecomerce; --\c ecomerce;
+--USE ecomerce; --\c ecomerce;
 
 CREATE TABLE cidades(
     id SERIAL PRIMARY KEY NOT NULL,
@@ -55,4 +55,4 @@ CREATE TABLE pedidos_produtos(
 --INSERTS PARA TESTES--
 
 INSERT INTO categorias(nome) VALUES ('bebidas');
-INSERT INTO produtos (nome, preco quantidade, categoria_id) VALUES ('coca-cola',1.99,2,1);
+INSERT INTO produtos (nome, preco, quantidade, categoria_id) VALUES ('coca-cola',1.99,2,1);
