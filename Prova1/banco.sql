@@ -38,6 +38,7 @@ CREATE TABLE produtos(
     preco FLOAT,
     quantidade FLOAT,
     categoria_id INT,
+    disponivel BOOLEAN DEFAULT TRUE,
 
     FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
