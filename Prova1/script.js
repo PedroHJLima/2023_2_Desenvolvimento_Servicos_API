@@ -1,6 +1,5 @@
 const restify = require('restify');
 const errors = require('restify-errors');
-const categoriaController = require('./controllers/categoriaController');
 
 //Rotas
 const categoriaRoutes = require('./rotas/categoriaRoutes');
@@ -8,6 +7,7 @@ const cidadeRoutes = require('./rotas/cidadeRoutes');
 const clienteRoutes = require('./rotas/clienteRoutes');
 const pedidoRoutes = require('./rotas/pedidoRoutes');
 const produtoRoutes = require('./rotas/produtoRoutes');
+const ped_prodRoutes = require('./rotas/ped_prodRoutes');
 
 const servidor = restify.createServer({
   name: 'lojinha',
@@ -27,3 +27,4 @@ cidadeRoutes(servidor);
 clienteRoutes(servidor);
 produtoRoutes(servidor);
 pedidoRoutes(servidor);
+ped_prodRoutes(servidor)

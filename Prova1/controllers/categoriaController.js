@@ -1,5 +1,4 @@
-// categoriaController.js
-const knex = require('../knex'); // Importe o arquivo knexfile.js que acabamos de criar
+const knex = require('../knex');
 const errors = require('restify-errors');
 
 // Aqui você pode definir todas as operações relacionadas à categoria
