@@ -59,6 +59,6 @@ CREATE TABLE pedidos_produtos(
 
 INSERT INTO categorias(nome) VALUES ('bebidas');
 INSERT INTO produtos (nome, preco, quantidade, categoria_id) VALUES ('coca-cola',1.99,2,1);
-INSERT INTO cidades(nome) VALUES ("Porto Alegre");
+INSERT INTO cidades(nome) VALUES ('Porto Alegre');
 INSERT INTO clientes(nome,altura,nascimento,cidade_id) VALUES('Pedro',1.80,'25-03-2003',1);
-INSERT INTO produtos( endereco, cliente_id) VALUES ("Rua álvaro Domingues",1)
+INSERT INTO pedidos(endereco, cliente_id) VALUES ('Rua álvaro Domingues',1);
