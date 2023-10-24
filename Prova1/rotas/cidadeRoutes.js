@@ -1,4 +1,4 @@
-const categoriaController = require('../controllers.js/cidadeController');
+const categoriaController = require('../controllers/cidadeController');
 
 function cidadeRoutes(servidor) {
   servidor.get('/cidades', categoriaController.getCidades);

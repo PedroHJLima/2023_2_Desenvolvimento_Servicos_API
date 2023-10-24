@@ -1,6 +1,6 @@
 CREATE DATABASE ecomerce;
 
---USE ecomerce; --\c ecomerce;
+\c ecomerce;
 
 CREATE TABLE cidades(
     id SERIAL PRIMARY KEY NOT NULL,
@@ -20,9 +20,10 @@ CREATE TABLE clientes(
 
 CREATE TABLE pedidos(
     id SERIAL PRIMARY KEY NOT NULL,
-    horario TIMESTAMP,
+    horario TIMESTAMP DEFAULT NOW(),
     endereco VARCHAR(200),
     cliente_id INT,
+    ativo BOOLEAN DEFAULT TRUE,
 
     FOREIGN KEY (cliente_id) REFERENCES  clientes(id)
 );
@@ -49,6 +50,7 @@ CREATE TABLE pedidos_produtos(
     preco FLOAT,
     quantidade FLOAT,
 
+    PRIMARY KEY (pedido_id, produto_id),
     FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
     FOREIGN KEY (produto_id) REFERENCES produtos(id)
 );
@@ -57,3 +59,6 @@ CREATE TABLE pedidos_produtos(
 
 INSERT INTO categorias(nome) VALUES ('bebidas');
 INSERT INTO produtos (nome, preco, quantidade, categoria_id) VALUES ('coca-cola',1.99,2,1);
+INSERT INTO cidades(nome) VALUES ("Porto Alegre");
+INSERT INTO clientes(nome,altura,nascimento,cidade_id) VALUES('Pedro',1.80,'25-03-2003',1);
+INSERT INTO produtos( endereco, cliente_id) VALUES ("Rua álvaro Domingues",1)

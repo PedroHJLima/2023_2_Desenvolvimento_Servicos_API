@@ -61,6 +61,19 @@ const atualizarCliente = (req, res, next) => {
       })
       .catch(next);
   };
+
+  const realizaPedido = (req, res, next) => {
+    const id = req.params.id;
+    knex('clientes')
+      .where('id', id)
+      .then((dados) => {
+        if (!dados) {
+          return res.send(new errors.BadRequestError('Este cliente não foi encontrado'));
+        }
+        res.send("Cliente de id "+id+" deletada");
+      })
+      .catch(next);
+  };
   
 
 module.exports = {

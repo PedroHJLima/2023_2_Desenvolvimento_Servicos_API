@@ -1,4 +1,4 @@
-const categoriaController = require('../controllers.js/categoriaController');
+const categoriaController = require('../controllers/categoriaController');
 
 function categoriaRoutes(servidor) {
   servidor.get('/categorias', categoriaController.getCategorias);

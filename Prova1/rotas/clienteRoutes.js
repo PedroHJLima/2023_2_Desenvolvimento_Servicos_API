@@ -1,4 +1,4 @@
-const clienteController = require('../controllers.js/clientesController');
+const clienteController = require('../controllers/clientesController');
 
 function cidadeRoutes(servidor) {
   servidor.get('/clientes', clienteController.getClientes);

@@ -17,12 +17,21 @@ const getProdutoPorId = (req, res, next) => {
     .first()
     .then((dados) => {
       if (!dados || dados == '') {
-        return res.send(new errors.BadRequestError('Cliente não encontrado'));
+        return res.send(new errors.BadRequestError('Produto não encontrado'));
       } else {
         res.send(dados);
       }
     });
 };
+
+const getDisponiveis = (req, res, next) => {
+  knex('produtos')
+  .where('disponivel',true)
+  .then((dados) => {
+    res.send(dados);
+  }, next);
+};
+
 
 const adicionarProduto = (req, res, next) => {
     knex('produtos')
@@ -69,4 +78,5 @@ module.exports = {
   adicionarProduto,
   atualizarProduto,
   deletarProduto,
+  getDisponiveis
 };
