@@ -1,11 +1,14 @@
 const livroController = require('../controllers/livroController');
+const { Router } = require("express");
 
-function categoriaRoutes(servidor) {
-  servidor.get('/livros', livroController.getlivros);
-  servidor.get('/livros/:idCat', livroController.getCategoriaPorId);
-  servidor.post('/livros', livroController.adicionarCategoria);
-  servidor.put('/livros/:id', livroController.atualizarCategoria);
-  servidor.del('/livros/:id', livroController.deletarCategoria);
-}
+const router = Router();
 
-module.exports = categoriaRoutes;
+router.get('/', livroController.getLivros);
+router.post('/', livroController.adicionarLivros);
+router.put('/:id', livroController.atualizarLivros);
+router.delete('/:id', livroController.deletarLivro);
+router.post('/:livroId/retirar/:usuarioId', livroController.retirarLivro);
+router.post('/:livroId/devolver/:usuarioId', livroController.devolverLivro);
+
+
+module.exports = router;

@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+}
+
+#livrosContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20vh;
+    border: 1px solid rgb(207, 26, 26);
+    
+}
+
+#livroBase {
+    background-color: rgb(206, 206, 206);
+    border: 1px solid rgb(0, 0, 0);
+    margin-left: 20px;
+    padding: 10px;
+}
+
+.livro-container {
+    border: 1px solid rgb(207, 26, 26);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    margin: 10px;
+}

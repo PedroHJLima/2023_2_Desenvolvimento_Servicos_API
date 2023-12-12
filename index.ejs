@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-signin-client_id" content="862939908913-uipjieinvp8751nd54100hdnukp0fjlp.apps.googleusercontent.com">
+
+    <title>Livraria</title>
+
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <h1>Livraria</h1>
+
+    <div id="livrosContainer"></div>
+
+    
+
+    <script>
+
+        function onSignIn(googleUser) {
+            // Chamado quando o usuário realiza o login com o Google
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Não remova esta linha.
+            console.log('Nome: ' + profile.getName());
+            console.log('E-mail: ' + profile.getEmail()); // Este campo pode estar vazio se as permissões não forem concedidas.
+    
+            // Você pode enviar os detalhes do usuário para o seu servidor aqui, se necessário.
+        }
+
+        function buscarLivros() {
+            // Faz uma solicitação AJAX para a API
+            fetch(`http://localhost:8001/livros`)
+                .then(response => response.json())
+                .then(data => exibirLivros(data))
+                .catch(error => console.error('Erro ao buscar livros:', error));
+        }
+
+    function exibirLivros(livros) {
+    const livrosContainer = document.getElementById('livrosContainer');
+    livrosContainer.innerHTML = '';
+
+    if (livros.length === 0) {
+        livrosContainer.innerHTML = '<p>Nenhum livro encontrado.</p>';
+    } else {
+
+        livros.forEach(livro => {
+            const livroDiv = document.createElement('div');
+            // Adiciona o ID do livro à div
+            livroDiv.id = `livroBase`;
+            livroDiv.innerHTML = `<p>${livro.isbn} - ${livro.nome} - ${livro.retirado}</p>`;
+
+            const retirarButton = document.createElement('button');
+            retirarButton.textContent = 'Retirar';
+            retirarButton.onclick = () => retirarLivro(livro.isbn);
+
+            livroDiv.appendChild(retirarButton);
+            livrosContainer.appendChild(livroDiv);
+        });
+    }
+}
+        function retirarLivro(livroIsbn) {
+    // Faz uma solicitação AJAX para a API para marcar o livro como retirado
+    fetch(`http://localhost:8001/livros/retirar/${livroIsbn}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // Pode enviar dados do usuário aqui, se necessário
+        // body: JSON.stringify({ usuarioId: seuUsuarioId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Atualiza a interface após a retirada bem-sucedida (se necessário)
+        console.log('Livro retirado com sucesso:', data);
+        // Atualiza a lista de livros após a retirada bem-sucedida
+        buscarLivros();
+    })
+    .catch(error => console.error('Erro ao retirar livro:', error));
+}
+
+        window.onload = buscarLivros;
+    </script>
+</body>
+</html>

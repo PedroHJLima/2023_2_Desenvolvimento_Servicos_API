@@ -4,28 +4,28 @@ const errors = require('restify-errors');
 
 // Aqui você pode definir todas as operações relacionadas à categoria
 
-const getautores = (req, res, next) => {
-  knex('autor').then((dados) => {
+const getUsers = (req, res, next) => {
+  knex('usuarios').then((dados) => {
     res.send(dados);
   }, next);
 };
 
-const getAutorPorID = (req, res, next) => {
-  const idCategoria = req.params.idCat;
-  knex('autor')
+const getUsersID = (req, res, next) => {
+  const idUser = req.params.idUser;
+  knex('usuarios')
     .where('id', idCategoria)
     .first()
     .then((dados) => {
       if (!dados || dados == '') {
-        return res.send(new errors.BadRequestError('Cliente não encontrado'));
+        return res.send(new errors.BadRequestError('Usuario não encontrado'));
       } else {
         res.send(dados);
       }
     });
 };
 
-const adicionarAutor = (req, res, next) => {
-    knex('autor')
+const addUser = (req, res, next) => {
+    knex('usuarios')
       .insert(req.body)
       .returning('*')
       .then((dados) => {
@@ -34,9 +34,9 @@ const adicionarAutor = (req, res, next) => {
       .catch(next);
   };
 
-const atualizarAutor = (req, res, next) => {
+const updateUser = (req, res, next) => {
     const id = req.params.id;
-    knex('autor')
+    knex('usuarios')
       .where('id', id)
       .update(req.body)
       .then((dados) => {
@@ -48,25 +48,25 @@ const atualizarAutor = (req, res, next) => {
       .catch(next);
   };
   
-  const deletarAutor = (req, res, next) => {
+  const deleteUser = (req, res, next) => {
     const id = req.params.id;
-    knex('autor')
+    knex('usuarios')
       .where('id', id)
       .delete()
       .then((dados) => {
         if (!dados) {
-          return res.send(new errors.BadRequestError('Este cliente não foi encontrado'));
+          return res.send(new errors.BadRequestError('Este usuario não foi encontrado'));
         }
-        res.send("Cliente de id "+id+" deletada");
+        res.send("Usuario de id "+id+" deletada");
       })
       .catch(next);
   };
   
 
 module.exports = {
-  getautores,
-  getAutorPorID,
-  adicionarAutor,
-  atualizarAutor,
-  deletarAutor,
+  getUsers,
+  getUsersID,
+  addUser,
+  updateUser,
+  deleteUser
 };
